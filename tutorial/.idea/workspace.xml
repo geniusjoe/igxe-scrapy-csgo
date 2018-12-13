@@ -72,8 +72,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="162" />
-    <option name="y" value="277" />
+    <option name="x" value="468" />
+    <option name="y" value="109" />
     <option name="width" value="1134" />
     <option name="height" value="937" />
   </component>
@@ -168,9 +168,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="162" y="277" width="1134" height="937" extended-state="0" />
+    <frame x="468" y="109" width="1134" height="937" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3047445" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3047445" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -182,7 +182,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5037244" side_tool="true" weight="0.2658385" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.32919255" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4962756" visible="true" weight="0.48443338" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4962756" visible="true" weight="0.48443338" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />

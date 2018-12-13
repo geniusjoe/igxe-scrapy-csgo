@@ -3,7 +3,7 @@ from scrapy.loader import ItemLoader
 from scrapy.spiders import Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy_splash import SplashRequest
-import tutorial.items as items
+from .. import items as items
 
 #   terminal command:
 #   scrapy crawl csgo_ig       -o ->  csgo.csv       -t csv
