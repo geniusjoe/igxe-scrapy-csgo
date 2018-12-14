@@ -12,7 +12,7 @@ from . import items as items
 lua_next_page = '''
     function main(splash)
       assert(splash:go(splash.args.url))
-      assert(splash:wait(0.5))
+      assert(splash:wait(5))
       local old_html=splash:html()
       local getElementByXpath= splash:jsfunc([[
               function getElementByXpath(path) {
@@ -26,7 +26,7 @@ lua_next_page = '''
         ]])
       local next_page_button=getElementByXpath(splash.args.trigger)
       element_click(next_page_button)
-        splash:wait(1)
+        splash:wait(5)
     
       return {
         html = old_html,
@@ -43,7 +43,7 @@ class IgSpider(scrapy.Spider):
 
     start_urls = ['https://www.igxe.cn/csgo/730']
 
-    rules = (Rule(LinkExtractor(allow=('cur_page=3',), deny=('cur_page=1', 'cur_page=2', 'cur_page=4'))))
+    rules = (Rule(LinkExtractor(allow=('cur_page=3',), allow_domains=('www.igxe.cn'),deny=('cur_page=1', 'cur_page=2', 'cur_page=4'))))
 
     def start_requests(self):
         for url in self.start_urls:
@@ -58,7 +58,7 @@ class IgSpider(scrapy.Spider):
         current_page_all_items = response.xpath('//*[@id="center"]/div/div[3]/div/div[2]//a/@href').extract()
         for item in current_page_all_items:
             url = '{base_url}{item}?cur_page=3'.format(base_url=self.base_url, item=item)
-            yield SplashRequest(url, self.weapon_parse, args={'wait': 0.5})
+            yield SplashRequest(url, self.weapon_parse, args={'wait': 5})
         next_page = response.xpath("//*[@id='page-content']/a[last()]/@href")
         if next_page is not None:
             yield SplashRequest(response.data['url'], self.parse, endpoint='execute',

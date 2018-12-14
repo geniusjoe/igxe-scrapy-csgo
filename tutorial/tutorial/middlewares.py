@@ -6,6 +6,11 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware
+from .settings import USER_AGENTS
+import random
+import requests
+import json
 
 
 class TutorialSpiderMiddleware(object):
@@ -101,3 +106,36 @@ class TutorialDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class RandomUserAgent(UserAgentMiddleware):
+    def process_request(self, request, spider):
+        ua = random.choice(USER_AGENTS)
+        request.headers.setdefault('User-Agent', ua)
+        request.headers['Accept'] = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        request.headers['Connection'] = 'keep-alive',
+        request.headers['Accept-Encoding'] = "gzip,deflate"
+
+
+class RandomProxy(object):
+    PROXIES = {}
+
+    def createProxy(self):
+        r = requests.get('http://119.29.13.145:8000/?types=0&count=1&country=国内')
+        ip_ports = json.loads(r.text)
+        print(ip_ports)
+        ip = ip_ports[0][0]
+        port = ip_ports[0][1]
+        self.PROXIES = {
+            'http': 'http://%s:%s' % (ip, port),
+            'https': 'http://%s:%s' % (ip, port)
+        }
+        r = requests.get('http://ip.chinaz.com/', proxies=self.PROXIES)
+        r.encoding = 'utf-8'
+        print(r.text)
+
+    def process_request(self, request, spider):
+        self.createProxy()
+        proxy = self.PROXIES
+        # request.meta['proxy'] = 'http://%s' % proxy
+        request.meta['splash']['args']['proxy'] = 'http://%s' % proxy
