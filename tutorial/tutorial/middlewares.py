@@ -130,9 +130,9 @@ class RandomProxy(object):
             'http': 'http://%s:%s' % (ip, port),
             'https': 'http://%s:%s' % (ip, port)
         }
-        r = requests.get('https://baidu.com/', proxies=self.PROXIES)
-        r.encoding = 'utf-8'
-        print(r.headers,r.status_code)
+        # r = requests.get('https://baidu.com/', proxies=self.PROXIES)
+        # r.encoding = 'utf-8'
+        # print(r.headers,r.status_code)
 
     def process_request(self, request, spider):
         self.createProxy()

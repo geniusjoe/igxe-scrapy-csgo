@@ -44,7 +44,8 @@ class IgSpider(scrapy.Spider):
 
     start_urls = ['https://www.igxe.cn/csgo/730']
 
-    rules = (Rule(LinkExtractor(allow=('cur_page=3',), allow_domains=('www.igxe.cn'),deny=('cur_page=1', 'cur_page=2', 'cur_page=4'))))
+    rules = (Rule(LinkExtractor(allow=('cur_page=3',), allow_domains=('www.igxe.cn'),
+                                deny=('cur_page=1', 'cur_page=2', 'cur_page=4'))))
 
     def start_requests(self):
         for url in self.start_urls:
@@ -60,14 +61,18 @@ class IgSpider(scrapy.Spider):
         for item in current_page_all_items:
             url = '{base_url}{item}?cur_page=3'.format(base_url=self.base_url, item=item)
             yield SplashRequest(url, self.weapon_parse, args={'wait': 5})
-        next_page = response.xpath("//*[@id='page-content']/a[last()]/@href")
-        if next_page is not None:
-            yield SplashRequest(response.data['url'], self.parse, endpoint='execute',
-                                args={
-                                    'lua_source': lua_next_page,
-                                    'trigger': '//*[@id="page-content"]/a[last()]',
-                                }
-                                )
+        current_page = response.xpath('//*[@id="page-content"]/span[2]//text()')
+        if current_page != 462 and current_page != 461:
+            next_page = response.xpath("//*[@id='page-content']/a[last()]/@href")
+            if next_page is not None:
+                yield SplashRequest(response.data['url'], self.parse, endpoint='execute',
+                                    args={
+                                        'lua_source': lua_next_page,
+                                        'trigger': '//*[@id="page-content"]/a[last()]',
+                                    }
+                                    )
+        else:
+            pass
 
     def weapon_parse(self, response):
         weapons = response.xpath('//*[@id="id-box4-vue"]/div/div[2]/div[1]/div[2]/div[2]/div[3]/table/tbody//tr')
@@ -80,4 +85,3 @@ class IgSpider(scrapy.Spider):
             l.add_value('selling_price', selling_price)
             l.add_value('selling_date', selling_date)
             yield l.load_item()
-

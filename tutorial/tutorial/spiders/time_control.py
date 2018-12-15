@@ -18,7 +18,7 @@ def perform1(inc):
 
 
 def mymain():
-    schedule.enter(0, 0, perform1, (86400,))
+    schedule.enter(0, 0, perform1, (21600,))
 
 
 if __name__ == "__main__":
