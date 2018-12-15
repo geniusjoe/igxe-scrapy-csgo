@@ -7,6 +7,7 @@
 
 import scrapy
 
+
 class weapon_ig_message(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field()

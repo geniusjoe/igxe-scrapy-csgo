@@ -121,7 +121,7 @@ class RandomProxy(object):
     PROXIES = {}
 
     def createProxy(self):
-        r = requests.get('http://119.29.13.145:8000/?types=0&count=1&country=国内')
+        r = requests.get('http://127.0.0.1:8000/?types=0&count=1&country=国内')
         ip_ports = json.loads(r.text)
         print(ip_ports)
         ip = ip_ports[0][0]
@@ -130,9 +130,9 @@ class RandomProxy(object):
             'http': 'http://%s:%s' % (ip, port),
             'https': 'http://%s:%s' % (ip, port)
         }
-        r = requests.get('http://ip.chinaz.com/', proxies=self.PROXIES)
+        r = requests.get('https://baidu.com/', proxies=self.PROXIES)
         r.encoding = 'utf-8'
-        print(r.text)
+        print(r.headers,r.status_code)
 
     def process_request(self, request, spider):
         self.createProxy()

@@ -6,7 +6,8 @@ from scrapy_splash import SplashRequest
 from . import items as items
 
 #   terminal command:
-#   scrapy crawl csgo_ig       -o ->  csgo.csv       -t csv
+#   docker run -p 8050:8050 scrapinghub/splash
+#   scrapy crawl csgo_ig
 
 
 lua_next_page = '''
