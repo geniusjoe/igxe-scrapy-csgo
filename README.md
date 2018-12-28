@@ -77,6 +77,7 @@ https://github.com/qiyeboy/IPProxyPool
 最后,移动到spiders文件夹
 
 `$ cd tutorial/tutorial/spiders`
+
 运行脚本
 
 `$ python time_control.py`
@@ -93,6 +94,7 @@ https://github.com/qiyeboy/IPProxyPool
 
 ### settings:
 
+#### 修改端口和地址
 IPProxy的端口配置请参考IPProxy的配置教程,其中端口名,最大IP数等可以进行相关的配置.从而达到在服务器上部署的能力.
 
 当修改IPProxy的端口和IP后,在*tutorial.middlewares.py*
@@ -101,7 +103,10 @@ IPProxy的端口配置请参考IPProxy的配置教程,其中端口名,最大IP�
 
 修改相关ip或者端口
 
+#### splash
 splash的设置由于设置在docker中,改动较少.
+
+#### 修改再次启动的时间
 
 在*time_control.py*中
 ```
