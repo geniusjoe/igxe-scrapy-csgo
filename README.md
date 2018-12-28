@@ -1,5 +1,5 @@
 # igxe-scrapy-csgo
-igxe csgo 物品交易 历史 抓取
+igxe csgo scrapy 物品交易 历史 抓取 爬虫
 
 ## 功能介绍
 - 通过IPProxy代理池的设计自动获取ip进行访问,防止ip被封
