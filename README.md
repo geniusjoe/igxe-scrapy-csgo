@@ -5,7 +5,8 @@ igxe csgo 物品交易 历史 抓取
 - 通过IPProxy代理池的设计自动获取ip进行访问,防止ip被封
 - 设置定时开启爬虫
 - 将收集到的数据用csv格式保存
-- 通过splash设置进行js的渲染,解决动态加载数据的问题
+- 由于igxe的物品采用动态加载,需要通过splash解决原生scrapy无法渲染js的问题
+- 通过splash,效率比selenium高
 
 ## 使用方式
 ### 环境要求
